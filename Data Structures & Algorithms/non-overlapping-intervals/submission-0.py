@@ -1,0 +1,14 @@
+class Solution:
+    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
+        intervals.sort(key=lambda x: x[0])
+
+        res = [intervals[0]]
+
+        size = len(intervals)
+        if size == 1:
+            return 1
+        
+        for i in range(1, size-1):
+            if (intervals[i][0] >= res[-1][1]):
+                res.append(intervals[i])
+        return size - len(res) - 1
